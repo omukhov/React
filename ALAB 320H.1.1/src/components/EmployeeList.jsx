@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import employees from "../data/employees";
 import EmployeeListItem from "./EmployeeListItem";
 
 const EmployeeListWrapper = styled.div`
@@ -8,7 +7,7 @@ const EmployeeListWrapper = styled.div`
   margin: 0 auto;
 `;
 
-function EmployeeList() {
+function EmployeeList({ employees }) {
   return (
     <EmployeeListWrapper>
       {employees.map((employee) => (

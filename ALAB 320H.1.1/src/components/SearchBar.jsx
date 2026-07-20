@@ -16,10 +16,15 @@ const SearchBarWrapper = styled.div`
   align-items: center;
 `;
 
-function SearchBar() {
+function SearchBar({ search, setSearch }) {
   return (
     <SearchBarWrapper>
-      <SearchBarInput />
+      <SearchBarInput
+        type="text"
+        placeholder="Search employees..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
     </SearchBarWrapper>
   );
 }
