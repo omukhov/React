@@ -20,8 +20,28 @@ export default function App() {
     }
   };
 
+  const getMovieNames = async () => {
+    try {
+      const response = await fetch(
+        `http://omdbapi.com/?apikey=${apiKey}&s=space&type=movie&page=2`,
+      );
+
+      const data = await response.json();
+      return data.Search.map((movie) => movie.Title);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   useEffect(() => {
-    getMovie("Guardians of the Galaxy: Vol. 2");
+    const loadMovie = async () => {
+      const names = await getMovieNames();
+      const randomIndex = Math.floor(Math.random() * names.length);
+      const randomMovie = names[randomIndex];
+      getMovie(randomMovie);
+    };
+
+    loadMovie();
   }, []);
 
   return (
