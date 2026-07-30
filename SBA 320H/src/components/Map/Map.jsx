@@ -13,31 +13,20 @@ let DefaultIcon = L.icon({
 });
 L.Marker.prototype.options.icon = DefaultIcon;
 
-function MapEvents({ events = [] }) {
+function MapEvents({ mapUrl, markers, center = [20, 0], zoom = 2 }) {
   return (
-    <MapContainer center={[20, 0]} zoom={2} className={styled.mapContainer}>
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
+    <MapContainer center={center} zoom={zoom} className={styled.mapContainer}>
+      <TileLayer url={mapUrl} />
 
-      {events?.map((event) => {
-        const geometry = event.geometry?.[0];
-        if (!geometry || !geometry.coordinates) return null;
-
-        const [longitude, latitude] = geometry.coordinates;
-        const position = [latitude, longitude];
-
-        return (
-          <Marker key={event.id} position={position}>
-            <Popup>
-              <strong>{event.title}</strong>
-              <br />
-              Category: {event.categories?.[0]?.title}
-            </Popup>
-          </Marker>
-        );
-      })}
+      {markers.map((marker) => (
+        <Marker key={marker.id} position={[marker.lat, marker.lng]}>
+          <Popup>
+            <strong>{marker.title}</strong>
+            <br />
+            {marker.description}
+          </Popup>
+        </Marker>
+      ))}
     </MapContainer>
   );
 }
