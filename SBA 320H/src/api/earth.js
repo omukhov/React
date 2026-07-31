@@ -1,3 +1,5 @@
+const NASA_API_KEY = import.meta.env.VITE_NASA_API_KEY;
+
 export async function getEarthquakes() {
   try {
     const response = await fetch(
@@ -106,6 +108,28 @@ export async function getCityCoords(cityName) {
     };
   } catch (error) {
     console.error("Geocoding failed:", error);
+    throw error;
+  }
+}
+
+export async function getNearEarthObjects() {
+  try {
+    const today = new Date().toISOString().split("T")[0];
+    const response = await fetch(
+      `https://api.nasa.gov/neo/rest/v1/feed?start_date=${today}&end_date=${today}&api_key=${NASA_API_KEY}`,
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch NEO data");
+    }
+
+    const data = await response.json();
+
+    const asteroids = Object.values(data.near_earth_objects).flat();
+
+    return asteroids;
+  } catch (error) {
+    console.error("Error fetching asteroids:", error);
     throw error;
   }
 }
