@@ -3,6 +3,13 @@ import Globe from "react-globe.gl";
 import { getISSCoords } from "../../api/earth.js";
 import { LoadingContext } from "../../context/LoadingContext.jsx";
 import styles from "./ISS.module.css";
+import * as THREE from "three";
+
+const textureLoader = new THREE.TextureLoader();
+const issTexture = textureLoader.load(
+  "https://upload.wikimedia.org/wikipedia/commons/d/d0/International_Space_Station.svg",
+);
+const issMaterial = new THREE.SpriteMaterial({ map: issTexture });
 
 function ISS() {
   const { startLoading, stopLoading } = useContext(LoadingContext);
@@ -19,7 +26,6 @@ function ISS() {
         }
 
         const data = await getISSCoords();
-
         const lat = Number(data?.latitude);
         const lng = Number(data?.longitude);
 
@@ -61,9 +67,9 @@ function ISS() {
     };
   }, []);
 
-  const issPoint =
+  const issObject =
     iss && Number.isFinite(iss.latitude) && Number.isFinite(iss.longitude)
-      ? [{ lat: iss.latitude, lng: iss.longitude }]
+      ? [{ lat: iss.latitude, lng: iss.longitude, alt: 0.1 }]
       : [];
 
   return (
@@ -72,10 +78,15 @@ function ISS() {
         ref={globeRef}
         globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
         backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
-        pointsData={issPoint}
-        pointColor={() => "red"}
-        pointRadius={0.6}
-        pointAltitude={0.05}
+        objectsData={issObject}
+        objectLat={(d) => d.lat}
+        objectLng={(d) => d.lng}
+        objectAltitude={(d) => d.alt}
+        objectThreeObject={() => {
+          const sprite = new THREE.Sprite(issMaterial);
+          sprite.scale.set(12, 12, 1); // Размер картинки над глобусом
+          return sprite;
+        }}
         pathsData={trajectory.length >= 2 ? [trajectory] : []}
         pathPointLat={(d) => d.lat}
         pathPointLng={(d) => d.lng}

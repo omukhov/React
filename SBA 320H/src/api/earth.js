@@ -47,7 +47,7 @@ export async function getEarthEvents() {
   }
 }
 
-export async function getISSCoords(params) {
+export async function getISSCoords() {
   try {
     const response = await fetch(
       "https://api.wheretheiss.at/v1/satellites/25544",
@@ -61,6 +61,51 @@ export async function getISSCoords(params) {
     return data;
   } catch (error) {
     console.error("Fetch failed:", error);
+    throw error;
+  }
+}
+
+export async function getWeather(lat, lng) {
+  try {
+    const response = await fetch(
+      `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,cloud_cover,weather_code`,
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch weather");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Fetch failed:", error);
+    throw error;
+  }
+}
+
+export async function getCityCoords(cityName) {
+  try {
+    const response = await fetch(
+      `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(cityName)}&limit=1`,
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to geocode city");
+    }
+
+    const data = await response.json();
+
+    if (!data || data.length === 0) {
+      throw new Error("City not found");
+    }
+
+    return {
+      name: data[0].display_name.split(",")[0], // Берём краткое название
+      country: data[0].display_name.split(",").slice(-1)[0].trim(), // Берём страну
+      lat: parseFloat(data[0].lat),
+      lng: parseFloat(data[0].lon),
+    };
+  } catch (error) {
+    console.error("Geocoding failed:", error);
     throw error;
   }
 }
