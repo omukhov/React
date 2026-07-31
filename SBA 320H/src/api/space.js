@@ -33,25 +33,6 @@ export async function getAPOD() {
   }
 }
 
-export async function getEarthEvents() {
-  try {
-    const response = await fetch(
-      "https://eonet.gsfc.nasa.gov/api/v3/events?days=3",
-    );
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch events");
-    }
-
-    const data = await response.json();
-
-    return data.events;
-  } catch (error) {
-    console.error("Fetch failed:", error);
-    throw error;
-  }
-}
-
 export async function getMarsRoverPhotos(rover, sol) {
   try {
     const response = await fetch(

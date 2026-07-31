@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { LoadingContext } from "../../context/LoadingContext";
-import { getMarsRoverPhotos } from "../../api/nasa.js";
+import { getMarsRoverPhotos } from "../../api/space.js";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import styles from "./Mars.module.css";

@@ -1,6 +1,6 @@
 import MapEvents from "../../components/Map/Map.jsx";
 import styled from "./Home.module.css";
-import { getEarthEvents } from "../../api/nasa.js";
+import { getEarthEvents } from "../../api/earth.js";
 import { useState, useEffect, useContext, useMemo } from "react";
 import { LoadingContext } from "../../context/LoadingContext.jsx";
 

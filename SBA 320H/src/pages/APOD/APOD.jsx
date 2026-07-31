@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { getAPOD } from "../../api/nasa.js";
+import { getAPOD } from "../../api/space.js";
 import Loader from "../../components/Loader/Loader.jsx";
 import { LoadingContext } from "../../context/LoadingContext.jsx";
 

@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { LoadingContext } from "../../context/LoadingContext";
-import { getEarthquakes } from "../../api/earthquake.js";
+import { getEarthquakes } from "../../api/earth.js";
 import styled from "./Earthquakes.module.css";
 import MapEvents from "../../components/Map/Map.jsx";
 
