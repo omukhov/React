@@ -54,11 +54,11 @@ export const getMagnitudeStyle = (mag) => {
   };
 };
 
-export const getLastWeekEarthquakes = () => {
+export const getLastThirtyDaysEarthquakes = () => {
   const end = new Date();
 
   const start = new Date();
-  start.setDate(end.getDate() - 7);
+  start.setDate(end.getDate() - 30);
 
   const formattedStart = start.toISOString().split("T")[0];
   const formattedEnd = end.toISOString().split("T")[0];

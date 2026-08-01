@@ -5,17 +5,20 @@ import styles from "./APOD.module.css";
 
 function APOD() {
   const [apod, setApod] = useState(null);
+  // Using context and get loader function
   const { startLoading, stopLoading } = useContext(LoadingContext);
 
   useEffect(() => {
     const fetchAPOD = async () => {
       try {
+        // Start loader
         startLoading();
         const data = await getAPOD();
         setApod(data);
       } catch (err) {
         console.error("Failed to load APOD:", err);
       } finally {
+        // Stop loader
         stopLoading();
       }
     };
@@ -35,7 +38,7 @@ function APOD() {
       )}
 
       <div className={styles.container}>
-        <header className={styles.header}>
+        <div className={styles.header}>
           <div className={styles.meta}>
             <span className={styles.dateTag}>{apod.date}</span>
             {apod.copyright && (
@@ -45,7 +48,7 @@ function APOD() {
             )}
           </div>
           <h1 className={styles.title}>{apod.title}</h1>
-        </header>
+        </div>
 
         <div className={styles.mediaContainer}>
           {apod.media_type === "image" ? (

@@ -39,7 +39,6 @@
     border-color 0.2s ease;
 }
 
-/* Класс для активной ссылки */
 .activeLink {
   color: #afdafc;
   border-bottom: 2px solid #afdafc;

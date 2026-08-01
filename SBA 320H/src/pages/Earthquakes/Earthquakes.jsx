@@ -14,12 +14,13 @@ import {
 } from "react-icons/lu";
 
 function Earthquakes() {
-  const { startLoading, stopLoading } = useContext(LoadingContext);
   const [earthquakes, setEarthquakes] = useState([]);
   const [minMagFilter, setMinMagFilter] = useState("all");
   const [selectedQuakeId, setSelectedQuakeId] = useState(null);
   const [mapCenter, setMapCenter] = useState([20, 0]);
   const [mapZoom, setMapZoom] = useState(2);
+
+  const { startLoading, stopLoading } = useContext(LoadingContext);
 
   useEffect(() => {
     const fetchEarthquakes = async () => {
@@ -76,7 +77,7 @@ function Earthquakes() {
             Monitor
           </h1>
           <p className={styles.subtitle}>
-            Earthquakes of magnitude 5.5+ recorded over the past 7 days
+            Earthquakes of magnitude 5.5+ recorded over the past 30 days
           </p>
         </div>
 

@@ -5,6 +5,7 @@ import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
 import styled from "./Map.module.css";
 
+// Fixing a common Leaflet icon bug
 let DefaultIcon = L.icon({
   iconUrl: markerIcon,
   shadowUrl: markerShadow,
@@ -18,8 +19,10 @@ function MapEvents({ mapUrl, markers, center = [20, 0], zoom = 2 }) {
     <MapContainer center={center} zoom={zoom} className={styled.mapContainer}>
       <TileLayer url={mapUrl} />
 
+      {/* Dynamic rendering markers on a map */}
       {markers.map((marker) => (
         <Marker key={marker.id} position={[marker.lat, marker.lng]}>
+          {/* Call special popup when user will click to marker */}
           <Popup>
             <strong>{marker.title}</strong>
             <br />

@@ -9,7 +9,7 @@
   overflow: hidden;
 }
 
-/* Эффект атмосферного свечения на фоне */
+/* Atmospheric glow effect in the background */
 .backdrop {
   position: absolute;
   top: 0;
@@ -18,6 +18,7 @@
   height: 100%;
   background-size: cover;
   background-position: center;
+  /* Creating Glow Effect */
   filter: blur(80px) brightness(0.25);
   transform: scale(1.1);
   z-index: 0;
@@ -34,7 +35,7 @@
   gap: 2rem;
 }
 
-/* Шапка */
+/* Header */
 .header {
   text-align: center;
   display: flex;
@@ -75,12 +76,14 @@
   font-weight: 700;
   margin: 0;
   line-height: 1.25;
+  /* Create gradient from down to up */
   background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+  /* Crops this background gradient strictly to the shape of the text characters */
   -webkit-background-clip: text;
+  /* Font-color became transparent */
   -webkit-text-fill-color: transparent;
 }
 
-/* Медиа (Изображение/Видео) */
 .mediaContainer {
   width: 100%;
   border-radius: 16px;
@@ -103,7 +106,7 @@
   transform: scale(1.01);
 }
 
-/* Видео с адаптивным соотношением 16:9 */
+/* Video with an adaptive 16:9 aspect ratio */
 .videoWrapper {
   position: relative;
   padding-bottom: 56.25%;
@@ -120,9 +123,10 @@
   border: none;
 }
 
-/* Стеклянная карточка с описанием */
+/* Glass card with a description */
 .descriptionCard {
   background: rgba(18, 18, 24, 0.65);
+  /* Takes the background pixels covered by this block and blurs them by 16px */
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -146,7 +150,7 @@
   margin: 0;
 }
 
-/* Мобильная адаптивность */
+/* Mobile responsiveness */
 @media (max-width: 640px) {
   .title {
     font-size: 1.6rem;

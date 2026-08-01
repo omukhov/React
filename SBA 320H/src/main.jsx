@@ -7,9 +7,9 @@ import { LoadingProvider } from "./context/LoadingContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    // Router for routing application
+    {/* Router for routing application */}
     <Router>
-      // Context for Loader
+      {/* Context for Loader */}
       <LoadingProvider>
         <App />
       </LoadingProvider>

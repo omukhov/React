@@ -1,3 +1,4 @@
+// Initial locations for weather page
 const locations = [
   {
     id: 1,

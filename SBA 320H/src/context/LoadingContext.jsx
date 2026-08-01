@@ -6,6 +6,7 @@ const initialState = {
   requests: 0,
 };
 
+// Reducer example function
 function reducer(state, action) {
   switch (action.type) {
     case "START":
@@ -28,6 +29,7 @@ export function LoadingProvider({ children }) {
 
   const timer = useRef(null);
 
+  // SetInterval need for smooth working application
   const startLoading = () => {
     clearTimeout(timer.current);
 
@@ -36,6 +38,7 @@ export function LoadingProvider({ children }) {
     });
   };
 
+  // Every loader will be works minimum 300ms, this prevents blinking.
   const stopLoading = () => {
     timer.current = setTimeout(() => {
       dispatch({

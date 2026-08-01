@@ -1,5 +1,6 @@
 import { getWeatherIcon } from "../../utils/HelperFunctions";
 
+// Custom popup for Weather page
 function WeatherPopup({ location }) {
   const weather = location.weather;
 

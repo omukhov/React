@@ -1,5 +1,8 @@
 const NASA_API_KEY = import.meta.env.VITE_NASA_API_KEY;
 
+// This API for every request which have space theme
+
+// Getting astronomic picture or video of day from NASA API
 export async function getAPOD() {
   try {
     const response = await fetch(
@@ -18,6 +21,7 @@ export async function getAPOD() {
   }
 }
 
+// Getting mars rover photos by choosing rover and sol (mars day) from nebulum API
 export async function getMarsRoverPhotos(rover, sol) {
   try {
     const response = await fetch(

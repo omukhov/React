@@ -13,6 +13,7 @@ import { LoadingContext } from "./context/LoadingContext.jsx";
 import { NotFound } from "./pages/NotFound/NotFound.jsx";
 
 function App() {
+  // Get loading from global loader for every component
   const { loading } = useContext(LoadingContext);
   return (
     <div>
