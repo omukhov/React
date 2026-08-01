@@ -22,7 +22,6 @@
   margin: 0 0 1.5rem 0;
 }
 
-/* Фильтры */
 .controls {
   display: flex;
   justify-content: center;
@@ -52,14 +51,12 @@
   color: #fff;
 }
 
-/* Сетка карточек */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
 }
 
-/* Карточка астероида */
 .card {
   background: #121218;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -78,7 +75,6 @@
   border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Опасные астероиды подсвечиваются красным бордером */
 .card.hazardous {
   border: 1px solid rgba(220, 38, 38, 0.5);
   background: linear-gradient(180deg, rgba(220, 38, 38, 0.05) 0%, #121218 100%);

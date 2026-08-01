@@ -20,11 +20,12 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 function Mars() {
-  const { startLoading, stopLoading } = useContext(LoadingContext);
   const [marsPhotos, setMarsPhotos] = useState([]);
   const [rover, setRover] = useState("Curiosity");
   const [sol, setSol] = useState(102);
   const [hasSearched, setHasSearched] = useState(false);
+
+  const { startLoading, stopLoading } = useContext(LoadingContext);
 
   const fetchMarsData = async (roverName, solNumber) => {
     try {
@@ -51,14 +52,14 @@ function Mars() {
   return (
     <div className={styles.container}>
       {/* Header section */}
-      <header className={styles.header}>
+      <div className={styles.header}>
         <h1 className={styles.title}>
           <LuRocket className={styles.titleIcon} /> Mars Rover Photography
         </h1>
         <p className={styles.subtitle}>
           Explore imagery captured directly by NASA rovers on the Red Planet
         </p>
-      </header>
+      </div>
 
       <div className={styles.controlsBar}>
         <div className={styles.inputGroup}>
@@ -100,6 +101,7 @@ function Mars() {
       <div className={styles.contentArea}>
         {marsPhotos.length > 0 && (
           <div className={styles.sliderWrapper}>
+            {/* Use third-party library swiper */}
             <Swiper
               className={styles.slider}
               modules={[Navigation, Pagination]}

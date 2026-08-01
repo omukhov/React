@@ -1,5 +1,19 @@
-import { LuFlame, LuWind, LuMountain, LuTriangleAlert } from "react-icons/lu";
+import {
+  LuFlame,
+  LuWind,
+  LuMountain,
+  LuTriangleAlert,
+  LuSun,
+  LuCloudSun,
+  LuCloudRain,
+  LuSnowflake,
+  LuCloudLightning,
+  LuGlobe,
+} from "react-icons/lu";
 
+// This file for every helper functions in whole project
+
+// Get category badge
 export const getCategoryBadge = (categoryName = "") => {
   const name = categoryName.toLowerCase();
   if (name.includes("wildfire") || name.includes("fire")) {
@@ -19,6 +33,7 @@ export const getCategoryBadge = (categoryName = "") => {
   };
 };
 
+// Get magnitude syle
 export const getMagnitudeStyle = (mag) => {
   const magnitude = Number(mag) || 0;
 
@@ -54,6 +69,7 @@ export const getMagnitudeStyle = (mag) => {
   };
 };
 
+// Get last 30 days earthquakes
 export const getLastThirtyDaysEarthquakes = () => {
   const end = new Date();
 
@@ -65,12 +81,13 @@ export const getLastThirtyDaysEarthquakes = () => {
   return { formattedStart, formattedEnd };
 };
 
+// Weather icons
 export const getWeatherIcon = (code) => {
-  if (code === 0) return "☀️";
-  if (code <= 3) return "⛅";
-  if (code <= 67) return "🌧";
-  if (code <= 77) return "❄️";
-  if (code <= 99) return "⛈";
+  if (code === 0) return <LuSun style={{ color: "#f59e0b" }} />;
+  if (code <= 3) return <LuCloudSun style={{ color: "#94a3b8" }} />;
+  if (code <= 67) return <LuCloudRain style={{ color: "#38bdf8" }} />;
+  if (code <= 77) return <LuSnowflake style={{ color: "#e2e8f0" }} />;
+  if (code <= 99) return <LuCloudLightning style={{ color: "#eab308" }} />;
 
-  return "🌍";
+  return <LuGlobe />;
 };

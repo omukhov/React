@@ -4,6 +4,7 @@ import L from "leaflet";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
 import styled from "./Map.module.css";
+import FlyToCity from "../FlyToCity/FlyToCity";
 
 // Fixing a common Leaflet icon bug
 let DefaultIcon = L.icon({
@@ -18,6 +19,8 @@ function MapEvents({ mapUrl, markers, center = [20, 0], zoom = 2 }) {
   return (
     <MapContainer center={center} zoom={zoom} className={styled.mapContainer}>
       <TileLayer url={mapUrl} />
+
+      <FlyToCity center={center} zoom={zoom} />
 
       {/* Dynamic rendering markers on a map */}
       {markers.map((marker) => (

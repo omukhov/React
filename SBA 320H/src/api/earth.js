@@ -2,7 +2,7 @@ import { getLastThirtyDaysEarthquakes } from "../utils/HelperFunctions";
 
 const NASA_API_KEY = import.meta.env.VITE_NASA_API_KEY;
 
-// I used a lot of API in this project. This file is API compiler for every request earth theme
+// I used a lot of API in this project. This file is API compiler for every request Earth theme
 
 // Getting all 5.5+ magnitude earthquakes for last 30 days from usgs gov API
 export async function getEarthquakes() {
@@ -25,7 +25,7 @@ export async function getEarthquakes() {
   }
 }
 
-// Getting all earth events for last 7 days from NASA API
+// Getting all Earth events for last 7 days from NASA API
 export async function getEarthEvents() {
   try {
     const response = await fetch(
@@ -116,7 +116,7 @@ export async function getCityCoords(cityName) {
   }
 }
 
-// Getting astreroids or comets around earth from NASA API
+// Getting astreroids or comets around Earth from NASA API
 export async function getNearEarthObjects() {
   try {
     const today = new Date().toISOString().split("T")[0];

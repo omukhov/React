@@ -2,15 +2,15 @@ import { useMap } from "react-leaflet";
 import { useEffect } from "react";
 
 // Smooth camera flight effect over the map get props array with coords
-function FlyToCity({ center }) {
+function FlyToCity({ center, zoom = 6 }) {
   // Map object
   const map = useMap();
   useEffect(() => {
-    if (center) {
-      // smooth fly to coords
-      map.flyTo(center, 9, { duration: 1.5 });
+    if (center && center[0] !== undefined && center[1] !== undefined) {
+      // Smooth fly to coords
+      map.flyTo(center, zoom, { duration: 1.5 });
     }
-  }, [center, map]);
+  }, [center, zoom, map]);
 
   return null;
 }

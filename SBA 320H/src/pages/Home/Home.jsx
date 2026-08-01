@@ -31,9 +31,11 @@ function Home() {
     fetchEarthEvents();
   }, []);
 
+  // Filter natural event
   const filteredEvents = useMemo(() => {
     if (activeCategory === "all") return events;
     return events.filter((e) =>
+      // get categories which have activeCategory in a title
       e.categories[0]?.title?.toLowerCase().includes(activeCategory),
     );
   }, [events, activeCategory]);

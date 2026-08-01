@@ -14,10 +14,15 @@ import {
 } from "react-icons/lu";
 
 function Earthquakes() {
+  // List of earthquakes
   const [earthquakes, setEarthquakes] = useState([]);
+  // State of minimum magnitude filter (all, 5, 6, 7)
   const [minMagFilter, setMinMagFilter] = useState("all");
+  // State of choosen quake by uesr
   const [selectedQuakeId, setSelectedQuakeId] = useState(null);
+  // Map center coords by default
   const [mapCenter, setMapCenter] = useState([20, 0]);
+  // Map size
   const [mapZoom, setMapZoom] = useState(2);
 
   const { startLoading, stopLoading } = useContext(LoadingContext);
@@ -38,29 +43,41 @@ function Earthquakes() {
     fetchEarthquakes();
   }, []);
 
+  // useMemo hook need cashing filter results, this function will be work only when earthquakes or minMagFilter change
   const filteredQuakes = useMemo(() => {
     if (minMagFilter === "all") return earthquakes;
+    // Create new float variable from string
     const threshold = parseFloat(minMagFilter);
+    // Get only magnitude >= my variable
     return earthquakes.filter((q) => (q.properties?.mag || 0) >= threshold);
   }, [earthquakes, minMagFilter]);
 
+  // Hook'll be rendering only when filteredQuakes change, create array markers
   const markers = useMemo(() => {
-    return filteredQuakes
-      .filter((q) => q.geometry?.coordinates)
-      .map((quake) => ({
-        id: quake.id,
-        lat: quake.geometry.coordinates[1],
-        lng: quake.geometry.coordinates[0],
-        title: quake.properties.place || "Earthquake",
-        description: `Magnitude ${quake.properties.mag}`,
-      }));
+    return (
+      filteredQuakes
+        // Filter quakes which have coords
+        .filter((q) => q.geometry?.coordinates)
+        .map((quake) => ({
+          // GeoJSON get coords format like (lng, lat), by leaflet get (lat, lng), i change places
+          id: quake.id,
+          lat: quake.geometry.coordinates[1],
+          lng: quake.geometry.coordinates[0],
+          title: quake.properties.place || "Earthquake",
+          description: `Magnitude ${quake.properties.mag}`,
+        }))
+    );
   }, [filteredQuakes]);
 
   const handleSelectQuake = (quake) => {
     if (quake.geometry?.coordinates) {
+      // Get coords GeoJSON format
       const [lng, lat] = quake.geometry.coordinates;
+      // Set choosen id
       setSelectedQuakeId(quake.id);
+      // Set center of map
       setMapCenter([lat, lng]);
+      // Set zoom
       setMapZoom(6);
     }
   };
@@ -133,9 +150,13 @@ function Earthquakes() {
                 No earthquakes found matching M{minMagFilter}+ in this timeframe
               </div>
             ) : (
+              // Render quakes
               filteredQuakes.map((quake) => {
+                // Get style for magnitude
                 const magStyle = getMagnitudeStyle(quake.properties?.mag);
+                // Check if id card equal selectedId
                 const isSelected = selectedQuakeId === quake.id;
+                // GeoJSON coords format look like [lng, lat, depth], depth - hypocenter depth in kilometers
                 const depth = quake.geometry?.coordinates[2];
 
                 return (

@@ -15,6 +15,7 @@ import {
 function NearEarthObjects() {
   const [asteroids, setAsteroids] = useState([]);
   const [filterHazardous, setFilterHazardous] = useState(false);
+
   const { startLoading, stopLoading } = useContext(LoadingContext);
 
   useEffect(() => {
@@ -22,7 +23,6 @@ function NearEarthObjects() {
       try {
         startLoading();
         const data = await getNearEarthObjects();
-        console.log(data);
         setAsteroids(data);
       } catch (error) {
         console.log(error);
@@ -34,6 +34,7 @@ function NearEarthObjects() {
     fetchObjectNearEarth();
   }, []);
 
+  // Filter for potentiall hazard asteroids
   const filteredAsteroids = filterHazardous
     ? asteroids.filter((item) => item.is_potentially_hazardous_asteroid)
     : asteroids;

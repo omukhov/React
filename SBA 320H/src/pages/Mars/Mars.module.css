@@ -264,6 +264,7 @@
   opacity: 0.6;
 }
 
+/* Global need for inner styles swiper library component */
 :global(.swiper-button-next),
 :global(.swiper-button-prev) {
   color: #f97316 !important;

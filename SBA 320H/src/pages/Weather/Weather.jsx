@@ -12,14 +12,18 @@ function Weather() {
   const [cityName, setCityName] = useState("");
   const [mapCenter, setMapCenter] = useState(null);
   const [searchError, setSearchError] = useState("");
+
   const { startLoading, stopLoading } = useContext(LoadingContext);
 
   useEffect(() => {
     const fetchWeather = async () => {
       try {
         startLoading();
+        // Parallel weather loading for a list of locations,
+        // create promise array, and return array objects after every promise is finished
         const weatherData = await Promise.all(
           locations.map(async (location) => {
+            // All calls will be in simultaneously/parralel
             const weather = await getWeather(location.lat, location.lng);
 
             return {
@@ -40,6 +44,7 @@ function Weather() {
     fetchWeather();
   }, []);
 
+  // Function for Add city to map with its weather
   const handleAddCity = async (e) => {
     e.preventDefault();
     if (!cityName.trim()) return;

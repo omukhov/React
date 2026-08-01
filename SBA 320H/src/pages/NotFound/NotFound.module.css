@@ -1,30 +1,28 @@
-/* Полноэкранная обертка поверх ВСЕГО (включая <Nav />) */
 .overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 9999; /* Выше меню и любого другого элемента */
+  /* Background image will have bigest priority than every component or page */
+  z-index: 9999;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
 }
 
-/* Растягивание изображения на весь экран */
 .bgImage {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Растягивает без искажения пропорций */
+  object-fit: cover;
   object-position: center;
   z-index: 1;
 }
 
-/* Небольшое затемнение фона, чтобы текст хорошо читался */
 .backdrop {
   position: absolute;
   top: 0;
@@ -35,7 +33,6 @@
   z-index: 2;
 }
 
-/* Контент по центру экрана */
 .content {
   position: relative;
   z-index: 3;
