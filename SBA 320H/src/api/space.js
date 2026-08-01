@@ -2,31 +2,16 @@ const NASA_API_KEY = import.meta.env.VITE_NASA_API_KEY;
 
 export async function getAPOD() {
   try {
-    let date = new Date();
+    const response = await fetch(
+      `https://api.nasa.gov/planetary/apod?api_key=${NASA_API_KEY}`,
+    );
 
-    while (true) {
-      const formattedDate = [
-        date.getFullYear(),
-        String(date.getMonth() + 1).padStart(2, "0"),
-        String(date.getDate()).padStart(2, "0"),
-      ].join("-");
-
-      const response = await fetch(
-        `https://api.nasa.gov/planetary/apod?api_key=${NASA_API_KEY}&date=${formattedDate}`,
-      );
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const data = await response.json();
-
-      if (data.media_type === "image") {
-        return data;
-      }
-
-      date.setDate(date.getDate() - 1);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
     }
+
+    const data = await response.json();
+    return data;
   } catch (error) {
     console.error("Fetch failed:", error);
     throw error;

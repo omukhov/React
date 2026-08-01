@@ -1,0 +1,155 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  color: #fff;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.title {
+  font-size: 2.2rem;
+  margin: 0 0 0.5rem 0;
+  color: #0f172a;
+}
+
+.subtitle {
+  color: #0f172a;
+  font-size: 1rem;
+  margin: 0 0 1.5rem 0;
+}
+
+/* Фильтры */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.filterBtn {
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1px solid #444;
+  background: #18181b;
+  color: #ccc;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.filterBtn.active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+}
+
+.filterBtn.dangerBtn.activeDanger {
+  background: #dc2626;
+  border-color: #dc2626;
+  color: #fff;
+}
+
+/* Сетка карточек */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* Карточка астероида */
+.card {
+  background: #121218;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Опасные астероиды подсвечиваются красным бордером */
+.card.hazardous {
+  border: 1px solid rgba(220, 38, 38, 0.5);
+  background: linear-gradient(180deg, rgba(220, 38, 38, 0.05) 0%, #121218 100%);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.cardHeader h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #38bdf8;
+}
+
+.badge {
+  background: rgba(220, 38, 38, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(220, 38, 38, 0.4);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 1.2rem;
+}
+
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  color: #aaa;
+}
+
+.infoRow strong {
+  color: #f3f4f6;
+}
+
+.detailsBtn {
+  text-align: center;
+  padding: 8px 0;
+  background: #1f2937;
+  color: #9ca3af;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.detailsBtn:hover {
+  background: #374151;
+  color: #fff;
+}
+
+.filterContainer {
+  display: flex;
+  align-items: center;
+}
+
+.triangleAlert {
+  margin-right: 5px;
+}

@@ -6,7 +6,7 @@ function Nav() {
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
-        <img className={styles.logoImage} src={logoImg} /> Earth Observatory
+        <img className={styles.logoImage} src={logoImg} /> World
       </div>
       <ul className={styles.navLinks}>
         <li>

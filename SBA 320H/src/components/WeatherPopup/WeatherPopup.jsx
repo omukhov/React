@@ -1,18 +1,10 @@
+import { getWeatherIcon } from "../../utils/HelperFunctions";
+
 function WeatherPopup({ location }) {
   const weather = location.weather;
 
-  function getWeatherIcon(code) {
-    if (code === 0) return "☀️";
-    if (code <= 3) return "⛅";
-    if (code <= 67) return "🌧";
-    if (code <= 77) return "❄️";
-    if (code <= 99) return "⛈";
-
-    return "🌍";
-  }
-
   return (
-    <div className="weatherCard">
+    <div>
       <h3>
         {getWeatherIcon(location.weather.weather_code)} 📍 {location.name}{" "}
         {location.country}

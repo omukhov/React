@@ -10,6 +10,7 @@ import NearEarthObjects from "./pages/NearEarthObjects/NearEarthObjects.jsx";
 import Weather from "./pages/Weather/Weather.jsx";
 import Loader from "./components/Loader/Loader.jsx";
 import { LoadingContext } from "./context/LoadingContext.jsx";
+import { NotFound } from "./pages/NotFound/NotFound.jsx";
 
 function App() {
   const { loading } = useContext(LoadingContext);
@@ -25,6 +26,7 @@ function App() {
         <Route path="/mars" element={<Mars />} />
         <Route path="/near-earth-objects" element={<NearEarthObjects />} />
         <Route path="/weather" element={<Weather />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

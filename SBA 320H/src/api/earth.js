@@ -1,9 +1,13 @@
+import { getLastWeekEarthquakes } from "../utils/HelperFunctions";
+
 const NASA_API_KEY = import.meta.env.VITE_NASA_API_KEY;
 
+//
 export async function getEarthquakes() {
   try {
+    const { formattedStart, formattedEnd } = getLastWeekEarthquakes();
     const response = await fetch(
-      `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=${getLastWeekEarthquakes().formattedStart}&endtime=${getLastWeekEarthquakes().formattedEnd}&minmagnitude=5.5`,
+      `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=${formattedStart}&endtime=${formattedEnd}&minmagnitude=5.5`,
     );
 
     if (!response.ok) {
@@ -19,21 +23,10 @@ export async function getEarthquakes() {
   }
 }
 
-function getLastWeekEarthquakes() {
-  const end = new Date();
-
-  const start = new Date();
-  start.setDate(end.getDate() - 7);
-
-  const formattedStart = start.toISOString().split("T")[0];
-  const formattedEnd = end.toISOString().split("T")[0];
-  return { formattedStart, formattedEnd };
-}
-
 export async function getEarthEvents() {
   try {
     const response = await fetch(
-      "https://eonet.gsfc.nasa.gov/api/v3/events?days=3",
+      "https://eonet.gsfc.nasa.gov/api/v3/events?days=7",
     );
 
     if (!response.ok) {
