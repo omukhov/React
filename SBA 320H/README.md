@@ -279,3 +279,7 @@ src
 - Responsive user interface
 - Modular API layer
 - CSS Modules for styling
+
+## Live Demo
+
+[View the deployed website](https://rococo-smakager-6bdcc7.netlify.app)
