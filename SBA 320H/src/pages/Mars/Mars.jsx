@@ -74,8 +74,6 @@ function Mars() {
           >
             <option value="Curiosity">Curiosity</option>
             <option value="Perseverance">Perseverance</option>
-            <option value="Opportunity">Opportunity</option>
-            <option value="Spirit">Spirit</option>
           </select>
         </div>
 
